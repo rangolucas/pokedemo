@@ -1,11 +1,17 @@
 package com.example.pokedemo.client;
 
-import java.net.URI;
+import com.example.pokedemo.service.ApiResourceVisitor;
 
-public class NamedApiResource {
+import java.net.URI;
+import java.util.List;
+
+public abstract class NamedApiResource {
 
     private String name;
     private URI url;
+
+    public abstract List<NamedApiResource> getDependencies();
+    public abstract void accept(ApiResourceVisitor visitor);
 
     public String getName() {
         return name;

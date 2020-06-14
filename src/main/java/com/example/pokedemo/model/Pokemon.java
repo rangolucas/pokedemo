@@ -1,9 +1,13 @@
 package com.example.pokedemo.model;
 
+import com.example.pokedemo.client.NamedApiResource;
+import com.example.pokedemo.service.ApiResourceVisitor;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Pokemon {
+public class Pokemon extends NamedApiResource {
 
     private long id;
     private String name;
@@ -16,6 +20,18 @@ public class Pokemon {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Override
+    public List<NamedApiResource> getDependencies() {
+        List<NamedApiResource> dependencies = new ArrayList<>();
+        this.types.forEach(typeDetail -> dependencies.add(typeDetail.getType()));
+        return dependencies;
+    }
+
+    @Override
+    public void accept(ApiResourceVisitor visitor) {
+        visitor.visit(this);
     }
 
     public String getName() {

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PokeApiClient<T> {
+public class PokeApiClient<T extends NamedApiResource> {
 
     private final WebClient client;
 
