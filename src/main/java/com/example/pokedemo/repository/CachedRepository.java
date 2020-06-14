@@ -1,6 +1,8 @@
 package com.example.pokedemo.repository;
 
+import com.example.pokedemo.client.NamedApiResource;
 import com.example.pokedemo.client.PokeApiClient;
+import com.example.pokedemo.model.Page;
 import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
@@ -15,7 +17,9 @@ public abstract class CachedRepository<T> implements PokedexRepository<T> {
 
     @Override
     @Cacheable
-    public List<T> getByPage(int limit, int offset) {
+    public List<T> getByPage(Page page) {
+        int limit = page.getPageSize();
+        int offset = page.getOffset();
         return this.client.fetchByPage(limit, offset, this);
     }
 
