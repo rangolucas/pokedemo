@@ -34,6 +34,12 @@ public class PokemonController {
         return this.dtoMapper.mapToDto(pokemon);
     }
 
+    @GetMapping("/pre-evolution/{name}")
+    public PokemonDto getPreEvolution(@PathVariable("name") String pokemonName) {
+        Pokemon preEvolution = this.pokemonService.getPreEvolution(pokemonName);
+        return this.dtoMapper.mapToDto(preEvolution);
+    }
+
     @GetMapping
     public List<PokemonDto> getPage(@RequestParam int page) throws PokedexException {
         List<Pokemon> pokemonList = this.pokemonService.getByPage(new Page(page));

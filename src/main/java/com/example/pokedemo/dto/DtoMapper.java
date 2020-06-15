@@ -19,6 +19,9 @@ public class DtoMapper {
     }
 
     public PokemonDto mapToDto(Pokemon pokemon) {
+        if(pokemon == null) {
+            return null;
+        }
         PokemonDto dto = this.modelMapper.map(pokemon, PokemonDto.class);
         List<Pokemon.TypeDetail> types = pokemon.getTypes();
         List<PokemonTypeDto> typeDtos = new ArrayList<>();
@@ -32,6 +35,9 @@ public class DtoMapper {
     }
 
     public PokemonTypeDto mapToDto(PokemonType type) {
+        if(type == null) {
+            return null;
+        }
         return this.modelMapper.map(type, PokemonTypeDto.class);
     }
 }

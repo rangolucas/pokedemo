@@ -1,14 +1,14 @@
-package com.example.pokedemo.client;
+package com.example.pokedemo.model.resource;
 
 import java.net.URL;
 import java.util.List;
 
-public class NamedApiResourceList {
+public class ApiResourceList {
 
     private int count;
     private URL next;
     private URL previous;
-    private List<NamedApiResource> results;
+    private List<ApiResource> results;
 
     public int getCount() {
         return count;
@@ -34,11 +34,11 @@ public class NamedApiResourceList {
         this.previous = previous;
     }
 
-    public List<NamedApiResource> getResults() {
+    public List<ApiResource> getResults() {
         return results;
     }
 
-    public void setResults(List<NamedApiResource> results) {
+    public void setResults(List<ApiResource> results) {
         this.results = results;
     }
 }

@@ -8,5 +8,5 @@ public interface PokedexRepository<T> {
 
     List<T> getByPage(Page page);
 
-    T getByName(String name);
+    T getByUrl(String url);
 }

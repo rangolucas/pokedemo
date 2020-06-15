@@ -1,6 +1,7 @@
 package com.example.pokedemo.model;
 
-import com.example.pokedemo.client.NamedApiResource;
+import com.example.pokedemo.model.resource.ApiResource;
+import com.example.pokedemo.model.resource.NamedApiResource;
 import com.example.pokedemo.service.ApiResourceVisitor;
 
 import java.util.ArrayList;
@@ -23,8 +24,8 @@ public class Pokemon extends NamedApiResource {
     }
 
     @Override
-    public List<NamedApiResource> getDependencies() {
-        List<NamedApiResource> dependencies = new ArrayList<>();
+    public List<ApiResource> getDependencies() {
+        List<ApiResource> dependencies = new ArrayList<>();
         this.types.forEach(typeDetail -> dependencies.add(typeDetail.getType()));
         return dependencies;
     }

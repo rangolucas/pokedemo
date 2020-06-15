@@ -1,6 +1,7 @@
 package com.example.pokedemo.model;
 
-import com.example.pokedemo.client.NamedApiResource;
+import com.example.pokedemo.model.resource.ApiResource;
+import com.example.pokedemo.model.resource.NamedApiResource;
 import com.example.pokedemo.service.ApiResourceVisitor;
 
 import java.util.Collections;
@@ -21,7 +22,7 @@ public class PokemonType extends NamedApiResource {
     }
 
     @Override
-    public List<NamedApiResource> getDependencies() {
+    public List<ApiResource> getDependencies() {
         return Collections.emptyList();
     }
 

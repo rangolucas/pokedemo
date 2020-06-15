@@ -45,11 +45,13 @@ public class Page {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Page page = (Page) o;
-        return pageNumber == page.pageNumber;
+        return pageNumber == page.pageNumber &&
+                pageSize == page.pageSize &&
+                offset == page.offset;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pageNumber);
+        return Objects.hash(pageNumber, pageSize, offset);
     }
 }
