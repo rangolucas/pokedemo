@@ -8,7 +8,7 @@ public class ApiResourceList {
     private int count;
     private URL next;
     private URL previous;
-    private List<ApiResource> results;
+    private List<Result> results;
 
     public int getCount() {
         return count;
@@ -34,11 +34,23 @@ public class ApiResourceList {
         this.previous = previous;
     }
 
-    public List<ApiResource> getResults() {
+    public List<Result> getResults() {
         return results;
     }
 
-    public void setResults(List<ApiResource> results) {
+    public void setResults(List<Result> results) {
         this.results = results;
+    }
+
+    public static class Result {
+        private String url;
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
     }
 }

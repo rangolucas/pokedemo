@@ -17,6 +17,6 @@ public class UriParser {
         }
 
         int baseUrlLength = baseUrl.length();
-        return uri.substring(baseUrlLength);
+        return '/' + uri.substring(baseUrlLength);
     }
 }
