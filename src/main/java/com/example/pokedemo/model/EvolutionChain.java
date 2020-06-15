@@ -29,25 +29,25 @@ public class EvolutionChain extends ApiResource {
     }
 
     private static class ChainLink {
-        private SpeciesName speciesName;
+        private SpeciesName species;
         @JsonProperty("evolves_to")
         private List<ChainLink> evolvesTo;
 
         public List<SpeciesName> getPostEvolutions(PokemonSpecies species) {
-            if(this.speciesName.equals(species.getName())) {
-                return this.evolvesTo.stream().map(link -> link.speciesName).collect(Collectors.toList());
+            if(this.species.name.equals(species.getName())) {
+                return this.evolvesTo.stream().map(link -> link.species).collect(Collectors.toList());
             }
             List<SpeciesName> postEvolutions = new ArrayList<>();
             this.evolvesTo.forEach(link -> postEvolutions.addAll(link.getPostEvolutions(species)));
             return postEvolutions;
         }
 
-        public SpeciesName getSpeciesName() {
-            return speciesName;
+        public SpeciesName getSpecies() {
+            return species;
         }
 
-        public void setSpeciesName(SpeciesName speciesName) {
-            this.speciesName = speciesName;
+        public void setName(SpeciesName species) {
+            this.species = species;
         }
 
         public List<ChainLink> getEvolvesTo() {

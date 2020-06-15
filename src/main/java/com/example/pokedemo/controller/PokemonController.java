@@ -40,6 +40,12 @@ public class PokemonController {
         return this.dtoMapper.mapToDto(preEvolution);
     }
 
+    @GetMapping("/post-evolutions/{name}")
+    public List<PokemonDto> getPostEvolutions(@PathVariable("name") String pokemonName) {
+        List<Pokemon> postEvolutions = this.pokemonService.getPostEvolutions(pokemonName);
+        return postEvolutions.stream().map(this.dtoMapper::mapToDto).collect(Collectors.toList());
+    }
+
     @GetMapping
     public List<PokemonDto> getPage(@RequestParam int page) throws PokedexException {
         List<Pokemon> pokemonList = this.pokemonService.getByPage(new Page(page));
