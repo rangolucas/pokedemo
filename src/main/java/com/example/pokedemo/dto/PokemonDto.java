@@ -7,6 +7,7 @@ public class PokemonDto {
 
     private int id;
     private String name;
+    private int weight;
     private int height;
     private List<PokemonTypeDto> types;
 
@@ -34,6 +35,14 @@ public class PokemonDto {
         this.height = height;
     }
 
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
     public List<PokemonTypeDto> getTypes() {
         return types;
     }
@@ -47,6 +56,7 @@ public class PokemonDto {
         return "PokemonDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", weight=" + weight +
                 ", height=" + height +
                 ", types=" + types +
                 '}';
@@ -58,6 +68,7 @@ public class PokemonDto {
         if (o == null || getClass() != o.getClass()) return false;
         PokemonDto that = (PokemonDto) o;
         return id == that.id &&
+                weight == that.weight &&
                 height == that.height &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(types, that.types);
@@ -65,6 +76,6 @@ public class PokemonDto {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, height, types);
+        return Objects.hash(id, name, weight, height, types);
     }
 }

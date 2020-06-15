@@ -13,6 +13,7 @@ public class Pokemon extends NamedApiResource {
     private long id;
     private String name;
     private int height;
+    private int weight;
     private List<TypeDetail> types;
 
     public long getId() {
@@ -41,6 +42,14 @@ public class Pokemon extends NamedApiResource {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
     public int getHeight() {
