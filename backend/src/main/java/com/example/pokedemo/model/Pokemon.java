@@ -3,6 +3,7 @@ package com.example.pokedemo.model;
 import com.example.pokedemo.model.resource.ApiResource;
 import com.example.pokedemo.model.resource.NamedApiResource;
 import com.example.pokedemo.service.ApiResourceVisitor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Pokemon extends NamedApiResource {
     private String name;
     private int height;
     private int weight;
+    private Sprites sprites;
     private List<TypeDetail> types;
 
     public long getId() {
@@ -60,6 +62,14 @@ public class Pokemon extends NamedApiResource {
         this.height = height;
     }
 
+    public Sprites getSprites() {
+        return sprites;
+    }
+
+    public void setSprites(Sprites sprites) {
+        this.sprites = sprites;
+    }
+
     public List<TypeDetail> getTypes() {
         return types;
     }
@@ -86,6 +96,29 @@ public class Pokemon extends NamedApiResource {
 
         public void setType(PokemonType type) {
             this.type = type;
+        }
+    }
+
+    public static class Sprites {
+        @JsonProperty("back_default")
+        private String backDefault;
+        @JsonProperty("front_default")
+        private String frontDefault;
+
+        public String getBackDefault() {
+            return backDefault;
+        }
+
+        public void setBackDefault(String backDefault) {
+            this.backDefault = backDefault;
+        }
+
+        public String getFrontDefault() {
+            return frontDefault;
+        }
+
+        public void setFrontDefault(String frontDefault) {
+            this.frontDefault = frontDefault;
         }
     }
 

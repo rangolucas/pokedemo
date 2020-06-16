@@ -9,6 +9,7 @@ public class PokemonDto {
     private String name;
     private int weight;
     private int height;
+    private String sprite;
     private List<PokemonTypeDto> types;
 
     public int getId() {
@@ -41,6 +42,14 @@ public class PokemonDto {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public String getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(String sprite) {
+        this.sprite = sprite;
     }
 
     public List<PokemonTypeDto> getTypes() {

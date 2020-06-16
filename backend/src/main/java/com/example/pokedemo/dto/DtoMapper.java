@@ -23,6 +23,7 @@ public class DtoMapper {
             return null;
         }
         PokemonDto dto = this.modelMapper.map(pokemon, PokemonDto.class);
+        dto.setSprite(pokemon.getSprites().getFrontDefault());
         List<Pokemon.TypeDetail> types = pokemon.getTypes();
         List<PokemonTypeDto> typeDtos = new ArrayList<>();
         types.forEach(typeDetail -> {

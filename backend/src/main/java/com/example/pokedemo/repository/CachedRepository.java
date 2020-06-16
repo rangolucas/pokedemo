@@ -13,7 +13,7 @@ public abstract class CachedRepository<T extends ApiResource> implements Pokedex
     protected PokeApiClient<T> client;
 
     @Override
-    @Cacheable
+    @Cacheable("page")
     public List<T> getByPage(Page page) {
         int limit = page.getPageSize();
         int offset = page.getOffset();
@@ -21,7 +21,7 @@ public abstract class CachedRepository<T extends ApiResource> implements Pokedex
     }
 
     @Override
-    @Cacheable
+    @Cacheable("url")
     public T getByUrl(String url) {
         return this.client.fetchByUrl(url, this.getBoundEntity());
     }
