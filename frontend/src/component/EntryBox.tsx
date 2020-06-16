@@ -11,7 +11,7 @@ export function EntryBox(props: IProps) {
 
     return(
         <div className="box">
-            Id: {pokemon.id}<br/>
+            <span className="id">{pokemon.id}</span>
             Name: {pokemon.name}<br/>
         </div>
     )

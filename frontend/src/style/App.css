@@ -1,11 +1,11 @@
 .App {
-  background-image: url("../asset/pikachu-background.jpg");
+  background-image: url("../../assets/pikachu-background.jpg");
   background-size: cover;
   height: 100%;
 }
 
 .header {
-  background-image: url("../asset/header.png");
+  background-image: url("../../assets/header.png");
   background-size: cover;
   height: 100%;
 }
