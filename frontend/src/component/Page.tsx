@@ -26,15 +26,6 @@ export function Page(props: IProps) {
         setSelectedPokemon(pokemon)
     }
 
-    let pikachu : Pokemon = {
-        name: "Pikachu", weight: 5, height: 5, id: 1, types: [{name: "electric", id: 1}], sprite:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
-    }
-    let gyarados : Pokemon = {
-        name: "Gyarados", weight: 5, height: 5, id: 300, types: [{name: "water", id: 300}], sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png"
-    }
-
-    let mock : Pokemon[] = [pikachu, gyarados]
-
     return loading ? <LoadingScreen/> : (
         <>
             <Modal show={selectedPokemon}>
