@@ -12,7 +12,7 @@ export function EntryBox(props: IProps) {
     return(
         <div onClick={() => props.onClick(pokemon)} className="box">
             <div className="id">{pokemon.id}</div>
-            <img className="sprite" src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"}/>
+            <img className="sprite" src={pokemon.sprite}/>
             <div className="name">{pokemon.name}</div>
             <div className="weight">{pokemon.weight}<span style={{fontSize: 10.5}}> kg</span></div>
             <div className="types">{pokemon.types.map(t => t.name).join(" / ")}</div>
