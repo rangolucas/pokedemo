@@ -1,4 +1,4 @@
-package com.example.pokedemo;
+package com.example.pokedemo.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

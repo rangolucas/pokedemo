@@ -1,5 +1,7 @@
 package com.example.pokedemo;
 
+import com.example.pokedemo.config.AppConfig;
+import com.example.pokedemo.exception.ApiErrorHandler;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,6 +24,9 @@ public class PokedemoApplication {
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		String rootUri = SpringContext.getBean(AppConfig.class).getBaseUrl();
-		return builder.rootUri(rootUri).build();
+		return builder
+				.rootUri(rootUri)
+				.errorHandler(new ApiErrorHandler())
+				.build();
 	}
 }

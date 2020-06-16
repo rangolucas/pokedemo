@@ -1,11 +1,13 @@
 package com.example.pokedemo.client;
 
+import com.example.pokedemo.exception.ResourceNotFoundException;
 import com.example.pokedemo.model.resource.ApiResource;
 import com.example.pokedemo.model.resource.ApiResourceList;
 import com.example.pokedemo.repository.CachedRepository;
 import com.example.pokedemo.service.DependencySolver;
 import com.example.pokedemo.util.UriParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -41,7 +43,14 @@ public class PokeApiClient<T extends ApiResource> {
     }
 
     private T fetchForEntity(String resourcePath, Class<T> entity, String... params) {
-        T resource = this.restTemplate.getForEntity(resourcePath, entity, params).getBody();
+        ResponseEntity<T> response;
+        try {
+            response = this.restTemplate.getForEntity(resourcePath, entity, params);
+        } catch (ResourceNotFoundException ex) {
+            throw new ResourceNotFoundException(resourcePath, ex);
+        }
+
+        T resource = response.getBody();
         resource.solveDependencies(this.visitor);
         return resource;
     }

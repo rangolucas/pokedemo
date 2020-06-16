@@ -1,6 +1,6 @@
 package com.example.pokedemo.util;
 
-import com.example.pokedemo.AppConfig;
+import com.example.pokedemo.config.AppConfig;
 import com.example.pokedemo.SpringContext;
 import com.example.pokedemo.exception.PokedexException;
 
