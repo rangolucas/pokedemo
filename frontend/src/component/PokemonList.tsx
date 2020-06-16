@@ -5,14 +5,14 @@ import "../style/PokemonList.css";
 
 interface IProps {
     pokemonList: Pokemon[]
+    onItemClick: Function
 }
 
 export function PokemonList(props: IProps) {
-
     return (
         <div>
             {props.pokemonList.map(pokemon => (
-                <EntryBox pokemon={pokemon} key={pokemon.id}/>
+                <EntryBox pokemon={pokemon} onClick={props.onItemClick} key={pokemon.id}/>
             ))}
         </div>
     )

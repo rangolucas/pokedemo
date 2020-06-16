@@ -17,3 +17,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'PokemonGb';
+  src: local('PokemonGb'), url("../fonts/Pokemon-Gb.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Pokemon-Hollow';
+  src: local('Pokemon'), url("../fonts/Pokemon-Hollow.ttf") format('truetype');
+}
+

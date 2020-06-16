@@ -4,6 +4,8 @@ import './style/index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './fonts/Pokemon-Gb.ttf'
+import './fonts/Pokemon-Hollow.ttf'
 
 ReactDOM.render(
   <React.StrictMode>

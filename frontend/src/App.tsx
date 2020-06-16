@@ -7,9 +7,7 @@ function App() {
 
     return (
         <>
-            <div style={{backgroundColor: "red", height: 130}}>
-                <div className="header"/>
-            </div>
+            <div className="header"/>
             <div className="App">
                 <Page pageNumber={1}/>
             </div>
