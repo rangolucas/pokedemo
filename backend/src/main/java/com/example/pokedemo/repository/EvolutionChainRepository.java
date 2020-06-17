@@ -4,7 +4,7 @@ import com.example.pokedemo.model.EvolutionChain;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class EvolutionChainRepository extends CachedRepository<EvolutionChain> {
+public class EvolutionChainRepository extends ApiResourceRepository<EvolutionChain> {
 
     @Override
     public Class<EvolutionChain> getBoundEntity() {

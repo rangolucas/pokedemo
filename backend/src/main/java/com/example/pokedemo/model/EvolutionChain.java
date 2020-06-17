@@ -4,6 +4,7 @@ import com.example.pokedemo.model.resource.ApiResource;
 import com.example.pokedemo.service.ApiResourceVisitor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,7 +29,9 @@ public class EvolutionChain extends ApiResource {
         visitor.visit(this);
     }
 
-    private static class ChainLink {
+    private static class ChainLink implements Serializable {
+        private static final long serialVersionUID = 1L;
+
         private SpeciesName species;
         @JsonProperty("evolves_to")
         private List<ChainLink> evolvesTo;
@@ -78,7 +81,9 @@ public class EvolutionChain extends ApiResource {
     /**
      * Created to avoid infinite recursion between PokemonSpecies -> EvolutionChain -> ChainLink
      */
-    public static class SpeciesName {
+    public static class SpeciesName implements Serializable {
+        private static final long serialVersionUID = 1L;
+
         private String name;
 
         public String getName() {

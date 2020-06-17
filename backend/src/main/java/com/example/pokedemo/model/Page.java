@@ -4,9 +4,11 @@ import com.example.pokedemo.config.AppConfig;
 import com.example.pokedemo.SpringContext;
 import com.example.pokedemo.exception.PokedexException;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Page {
+public class Page implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final int pageNumber;
     private final int pageSize;
     private final int offset;

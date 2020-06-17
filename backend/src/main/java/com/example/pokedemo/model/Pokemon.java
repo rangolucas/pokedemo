@@ -5,6 +5,7 @@ import com.example.pokedemo.model.resource.NamedApiResource;
 import com.example.pokedemo.service.ApiResourceVisitor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -88,7 +89,9 @@ public class Pokemon extends NamedApiResource {
         this.abilities = abilities;
     }
 
-    public static class TypeDetail {
+    public static class TypeDetail implements Serializable {
+        private static final long serialVersionUID = 1L;
+
         private int slot;
         private PokemonType type;
 
@@ -109,7 +112,9 @@ public class Pokemon extends NamedApiResource {
         }
     }
 
-    public static class Sprites {
+    public static class Sprites implements Serializable {
+        private static final long serialVersionUID = 1L;
+
         @JsonProperty("back_default")
         private String backDefault;
         @JsonProperty("front_default")
@@ -132,7 +137,9 @@ public class Pokemon extends NamedApiResource {
         }
     }
 
-    public static class AbilityDetail {
+    public static class AbilityDetail implements Serializable {
+        private static final long serialVersionUID = 1L;
+
         private Ability ability;
 
         public Ability getAbility() {

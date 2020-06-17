@@ -46,7 +46,7 @@ public class DependencySolver implements ApiResourceVisitor {
 
     @Override
     public void visit(EvolutionChain evolutionChain) {
-        EvolutionChain fetched = this.evolutionChainRepository.getByUrl(evolutionChain.getUrl());
+        EvolutionChain fetched = this.evolutionChainRepository.getByUrl(evolutionChain.getUrl(), true);
         evolutionChain.setId(fetched.getId());
         evolutionChain.setChain(fetched.getChain());
     }

@@ -4,7 +4,7 @@ import com.example.pokedemo.model.Ability;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class AbilityRepository extends NamedCachedRepository<Ability> {
+public class AbilityRepository extends NamedApiResourceRepository<Ability> {
 
     @Override
     public Class<Ability> getBoundEntity() {

@@ -1,5 +1,6 @@
 package com.example.pokedemo.model.resource;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.List;
 
@@ -42,7 +43,8 @@ public class ApiResourceList {
         this.results = results;
     }
 
-    public static class Result {
+    public static class Result implements Serializable {
+        private static final long serialVersionUID = 1L;
         private String url;
 
         public String getUrl() {
