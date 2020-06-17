@@ -17,6 +17,7 @@ public class Pokemon extends NamedApiResource {
     private int weight;
     private Sprites sprites;
     private List<TypeDetail> types;
+    private List<AbilityDetail> abilities;
 
     public long getId() {
         return id;
@@ -30,6 +31,7 @@ public class Pokemon extends NamedApiResource {
     public List<ApiResource> getDependencies() {
         List<ApiResource> dependencies = new ArrayList<>();
         this.types.forEach(typeDetail -> dependencies.add(typeDetail.getType()));
+        this.abilities.forEach(abilityDetail -> dependencies.add(abilityDetail.getAbility()));
         return dependencies;
     }
 
@@ -78,6 +80,14 @@ public class Pokemon extends NamedApiResource {
         this.types = types;
     }
 
+    public List<AbilityDetail> getAbilities() {
+        return abilities;
+    }
+
+    public void setAbilities(List<AbilityDetail> abilities) {
+        this.abilities = abilities;
+    }
+
     public static class TypeDetail {
         private int slot;
         private PokemonType type;
@@ -122,6 +132,18 @@ public class Pokemon extends NamedApiResource {
         }
     }
 
+    public static class AbilityDetail {
+        private Ability ability;
+
+        public Ability getAbility() {
+            return ability;
+        }
+
+        public void setAbility(Ability ability) {
+            this.ability = ability;
+        }
+    }
+
     @Override
     public String toString() {
         return "Pokemon{" +
@@ -141,4 +163,5 @@ public class Pokemon extends NamedApiResource {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }

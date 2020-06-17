@@ -1,12 +1,15 @@
 package com.example.pokedemo.controller;
 
 import com.example.pokedemo.dto.DtoMapper;
+import com.example.pokedemo.dto.EmptyJsonResponse;
 import com.example.pokedemo.dto.PokemonDto;
 import com.example.pokedemo.exception.PokedexException;
 import com.example.pokedemo.model.Page;
 import com.example.pokedemo.model.Pokemon;
 import com.example.pokedemo.service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,9 +38,14 @@ public class PokemonController {
     }
 
     @GetMapping("/pre-evolution/{name}")
-    public PokemonDto getPreEvolution(@PathVariable("name") String pokemonName) {
+    public ResponseEntity<Object> getPreEvolution(@PathVariable("name") String pokemonName) {
         Pokemon preEvolution = this.pokemonService.getPreEvolution(pokemonName);
-        return this.dtoMapper.mapToDto(preEvolution);
+        PokemonDto pokemonDto = this.dtoMapper.mapToDto(preEvolution);
+        if(pokemonDto != null) {
+            return new ResponseEntity<>(pokemonDto, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(new EmptyJsonResponse(), HttpStatus.OK);
     }
 
     @GetMapping("/post-evolutions/{name}")

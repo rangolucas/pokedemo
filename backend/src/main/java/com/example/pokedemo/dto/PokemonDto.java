@@ -11,6 +11,7 @@ public class PokemonDto {
     private int height;
     private String sprite;
     private List<PokemonTypeDto> types;
+    private List<String> abilities;
 
     public int getId() {
         return id;
@@ -58,6 +59,14 @@ public class PokemonDto {
 
     public void setTypes(List<PokemonTypeDto> types) {
         this.types = types;
+    }
+
+    public List<String> getAbilities() {
+        return abilities;
+    }
+
+    public void setAbilities(List<String> abilities) {
+        this.abilities = abilities;
     }
 
     @Override

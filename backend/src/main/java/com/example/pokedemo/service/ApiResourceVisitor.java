@@ -1,5 +1,6 @@
 package com.example.pokedemo.service;
 
+import com.example.pokedemo.model.Ability;
 import com.example.pokedemo.model.EvolutionChain;
 import com.example.pokedemo.model.Pokemon;
 import com.example.pokedemo.model.PokemonSpecies;
@@ -10,4 +11,5 @@ public interface ApiResourceVisitor {
     void visit(PokemonType pokemonType);
     void visit(PokemonSpecies pokemonSpecies);
     void visit(EvolutionChain evolutionChain);
+    void visit(Ability ability);
 }

@@ -1,9 +1,11 @@
 package com.example.pokedemo.service;
 
+import com.example.pokedemo.model.Ability;
 import com.example.pokedemo.model.EvolutionChain;
 import com.example.pokedemo.model.Pokemon;
 import com.example.pokedemo.model.PokemonSpecies;
 import com.example.pokedemo.model.PokemonType;
+import com.example.pokedemo.repository.AbilityRepository;
 import com.example.pokedemo.repository.EvolutionChainRepository;
 import com.example.pokedemo.repository.PokemonRepository;
 import com.example.pokedemo.repository.PokemonSpeciesRepository;
@@ -18,6 +20,7 @@ public class DependencySolver implements ApiResourceVisitor {
     private PokemonTypeRepository typeRepository;
     private PokemonSpeciesRepository pokemonSpeciesRepository;
     private EvolutionChainRepository evolutionChainRepository;
+    private AbilityRepository abilityRepository;
 
     @Override
     public void visit(Pokemon pokemon) {
@@ -48,6 +51,12 @@ public class DependencySolver implements ApiResourceVisitor {
         evolutionChain.setChain(fetched.getChain());
     }
 
+    @Override
+    public void visit(Ability ability) {
+        Ability fetched = this.abilityRepository.getByName(ability.getName());
+        ability.setId(fetched.getId());
+    }
+
     @Autowired
     public void setPokemonRepository(PokemonRepository pokemonRepository) {
         this.pokemonRepository = pokemonRepository;
@@ -66,5 +75,10 @@ public class DependencySolver implements ApiResourceVisitor {
     @Autowired
     public void setEvolutionChainRepository(EvolutionChainRepository evolutionChainRepository) {
         this.evolutionChainRepository = evolutionChainRepository;
+    }
+
+    @Autowired
+    public void setAbilityRepository(AbilityRepository abilityRepository) {
+        this.abilityRepository = abilityRepository;
     }
 }
