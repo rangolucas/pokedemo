@@ -1,7 +1,5 @@
 .bg {
-  background-image: url("../assets/pikachu-background.jpg");
-  width: 100%;
-  left: 0;
+  background-color: #cbcbcb;
 }
 
 .header {

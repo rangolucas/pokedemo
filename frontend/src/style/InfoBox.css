@@ -2,3 +2,21 @@
     display: flex;
     justify-content: center;
 }
+
+.evo-title {
+    font-size: 17px;
+}
+
+.clickable {
+    display: inline;
+}
+
+.clickable:hover{
+    cursor: pointer;
+}
+
+.card {
+    display: block;
+    padding: 10px;
+    font-family: "Courier New";
+}

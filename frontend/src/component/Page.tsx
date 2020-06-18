@@ -1,44 +1,61 @@
 import * as React from "react";
 import {PokemonList} from "./PokemonList";
-import {Card} from "./Card";
+import "../style/Page.css";
 import {Pokemon} from "../model/Pokemon";
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 import {LoadingScreen} from "./LoadingScreen";
+import {config} from "../config/config"
+import {InfoBox} from "./InfoBox";
+import ReactPaginate from "react-paginate";
 
-interface IProps {
-    pageNumber: number
-}
-
-export function Page(props: IProps) {
+export function Page() {
     const [pokemonList, setPokemonList] = React.useState<Pokemon[]>([]);
     const [selectedPokemon, setSelectedPokemon] = React.useState<Pokemon | null>(null);
+    const [pageNumber, setPageNumber] = React.useState<number>(0);
     const [loading, setLoading] = React.useState<boolean>(true);
 
-    React.useEffect(() => {
+    function handlePageChanged(data : any) {
         setLoading(true)
-        let url: string = "http://localhost:8080/pokemon/?page=" + props.pageNumber
-        fetch(url).then(response => response.json()).then(data => setPokemonList(data))
-        setLoading(false)
-    }, [props.pageNumber])
-
-    function showModal(pokemon : Pokemon) {
-        setSelectedPokemon(pokemon)
+        setPageNumber(data.selected)
     }
+
+    React.useEffect(() => {
+        let url: string = config.apiUrl + config.pokemonPath + "?page=" + (pageNumber+1)
+        console.log(url)
+        fetch(url).then(response => response.json()).then(data => {
+            setPokemonList(data)
+            setLoading(false)
+        })
+    }, [pageNumber])
 
     return loading ? <LoadingScreen/> : (
         <>
-            <Modal show={selectedPokemon}>
+            <ReactPaginate
+                breakClassName={'page-item'}
+                breakLinkClassName={'page-link'}
+                containerClassName={'pagination'}
+                pageClassName={'page-item'}
+                pageLinkClassName={'page-link'}
+                previousClassName={'page-item'}
+                previousLinkClassName={'page-link'}
+                nextClassName={'page-item'}
+                nextLinkClassName={'page-link'}
+                activeClassName={'active'}
+                forcePage={pageNumber}
+                pageCount={48}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={handlePageChanged}
+            />
+            <Modal onHide={() => setSelectedPokemon(null)} show={selectedPokemon != null} dialogClassName="modal-width">
                 <Modal.Body>
-                    <Card pokemon={selectedPokemon}/>
+                    <InfoBox pokemon={selectedPokemon} onItemClick={(pokemon : Pokemon) => setSelectedPokemon(pokemon)}/>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setSelectedPokemon(null)}>
-                        Close
-                    </Button>
+                    <div style={{marginRight: "auto"}}className="info">Click on a pokemon to see its info.</div>
                 </Modal.Footer>
             </Modal>
-            <PokemonList onItemClick={(item:Pokemon) => showModal(item)} pokemonList={pokemonList}/>
+            <PokemonList onItemClick={(item : Pokemon) => setSelectedPokemon(item)} pokemonList={pokemonList}/>
         </>
     )
 }

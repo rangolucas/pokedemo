@@ -2,3 +2,13 @@
     width: 110px;
     height: 110px;
 }
+
+.container{
+    position: fixed;
+    top: 40%;
+    left: 47.5%;
+}
+
+.prompt{
+    font-family: Console;
+}

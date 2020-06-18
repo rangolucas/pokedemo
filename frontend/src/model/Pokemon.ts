@@ -7,4 +7,5 @@ export interface Pokemon {
     height: number
     sprite: string
     types: PokemonType[]
+    abilities: string[]
 }

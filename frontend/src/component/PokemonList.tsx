@@ -10,7 +10,7 @@ interface IProps {
 
 export function PokemonList(props: IProps) {
     return (
-        <div>
+        <div className="list">
             {props.pokemonList.map(pokemon => (
                 <EntryBox pokemon={pokemon} onClick={props.onItemClick} key={pokemon.id}/>
             ))}

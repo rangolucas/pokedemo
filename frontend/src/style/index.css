@@ -28,3 +28,8 @@ code {
   src: local('Pokemon'), url("../fonts/Pokemon-Hollow.ttf") format('truetype');
 }
 
+@font-face {
+  font-family: 'Console';
+  src: local('Console'), url("../fonts/LUCON.TTF") format('truetype');
+}
+

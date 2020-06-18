@@ -1,0 +1,13 @@
+.modal-width {
+    max-width: 800px!important;
+}
+
+.info {
+    font-size: 10px;
+}
+
+ul.pagination {
+    justify-content: center;
+    top: 130px;
+    position: sticky
+}
