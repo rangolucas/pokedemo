@@ -29,7 +29,7 @@ public class EvolutionChain extends ApiResource {
         visitor.visit(this);
     }
 
-    private static class ChainLink implements Serializable {
+    public static class ChainLink implements Serializable {
         private static final long serialVersionUID = 1L;
 
         private SpeciesName species;
@@ -47,6 +47,10 @@ public class EvolutionChain extends ApiResource {
 
         public SpeciesName getSpecies() {
             return species;
+        }
+
+        public void setSpecies(SpeciesName species) {
+            this.species = species;
         }
 
         public void setName(SpeciesName species) {

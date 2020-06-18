@@ -13,12 +13,22 @@ public class Page implements Serializable {
     private final int pageSize;
     private final int offset;
 
-    public Page(int pageNumber) throws PokedexException {
+    public Page(int pageNumber) {
         if(pageNumber <= 0) {
             throw new PokedexException("Invalid page number");
         }
 
         this.pageSize = SpringContext.getBean(AppConfig.class).getPageSize();
+        this.pageNumber = pageNumber;
+        this.offset = this.pageSize * (pageNumber - 1);
+    }
+
+    public Page(int pageNumber, int pageSize) {
+        if(pageNumber <= 0) {
+            throw new PokedexException("Invalid page number");
+        }
+
+        this.pageSize = pageSize;
         this.pageNumber = pageNumber;
         this.offset = this.pageSize * (pageNumber - 1);
     }

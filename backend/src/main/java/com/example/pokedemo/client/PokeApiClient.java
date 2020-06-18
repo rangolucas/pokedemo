@@ -23,7 +23,6 @@ public class PokeApiClient<T extends ApiResource> {
     private RestTemplate restTemplate;
     private DependencySolver visitor;
 
-    @Cacheable(cacheNames = "page")
     public List<T> fetchByPage(int limit, int offset, ApiResourceRepository<T> repository) {
         String resourceName = repository.getCategoryName();
         ApiResourceList apiResourceList = this.restTemplate.getForEntity(
@@ -48,11 +47,10 @@ public class PokeApiClient<T extends ApiResource> {
     }
 
     private T fetchForEntity(String resourcePath, Class<T> entity, String... params) {
-        ResponseEntity<T> response;
-        try {
-            response = this.restTemplate.getForEntity(resourcePath, entity, params);
-        } catch (ResourceNotFoundException ex) {
-            throw new ResourceNotFoundException(resourcePath, ex);
+        ResponseEntity<T> response = this.restTemplate.getForEntity(resourcePath, entity, params);
+
+        if(response.getStatusCode().is4xxClientError()) {
+            throw new ResourceNotFoundException(response.toString());
         }
 
         T resource = response.getBody();
