@@ -7,12 +7,18 @@ import {LoadingScreen} from "./LoadingScreen";
 import {config} from "../config/config"
 import {InfoBox} from "./InfoBox";
 import ReactPaginate from "react-paginate";
+import {useDispatch, useSelector} from "react-redux";
+import {PagesState} from "../redux/reducers/page.reducer";
+import {IPage} from "../model/IPage";
+import {addPage} from "../redux/actions/page.action";
 
 export function Page() {
     const [pokemonList, setPokemonList] = React.useState<Pokemon[]>([]);
     const [selectedPokemon, setSelectedPokemon] = React.useState<Pokemon | null>(null);
     const [pageNumber, setPageNumber] = React.useState<number>(0);
     const [loading, setLoading] = React.useState<boolean>(true);
+    const pages : IPage[] = useSelector((state : PagesState) => state.pages);
+    const dispatch = useDispatch();
 
     function handlePageChanged(data : any) {
         setLoading(true)
@@ -20,12 +26,18 @@ export function Page() {
     }
 
     React.useEffect(() => {
-        let url: string = config.apiUrl + config.pokemonPath + "?page=" + (pageNumber+1)
-        console.log(url)
-        fetch(url).then(response => response.json()).then(data => {
-            setPokemonList(data)
+        let cachedPage = pages.find(p => p.number === pageNumber);
+        if(!cachedPage) {
+            let url: string = config.apiUrl + config.pokemonPath + "?page=" + (pageNumber + 1);
+            fetch(url).then(response => response.json()).then(data => {
+                setPokemonList(data)
+                setLoading(false)
+                dispatch(addPage({ number: pageNumber, pokemon: data }));
+            });
+        } else {
+            setPokemonList(cachedPage.pokemon);
             setLoading(false)
-        })
+        }
     }, [pageNumber])
 
     return loading ? <LoadingScreen/> : (
