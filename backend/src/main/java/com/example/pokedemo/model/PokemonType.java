@@ -11,7 +11,6 @@ import java.util.Objects;
 public class PokemonType extends NamedApiResource {
 
     private int id;
-    private String name;
 
     public int getId() {
         return id;
@@ -31,18 +30,10 @@ public class PokemonType extends NamedApiResource {
         visitor.visit(this);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public String toString() {
         return "PokemonType{" +
-                "name='" + name + '\'' +
+                "name='" + this.getName() + '\'' +
                 '}';
     }
 

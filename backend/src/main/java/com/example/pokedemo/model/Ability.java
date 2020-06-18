@@ -10,7 +10,6 @@ import java.util.List;
 public class Ability extends NamedApiResource {
 
     private int id;
-    private String name;
 
     @Override
     public List<ApiResource> getDependencies() {
@@ -31,19 +30,9 @@ public class Ability extends NamedApiResource {
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
     public String toString() {
         return "Ability{" +
-                "name='" + name +
+                "name='" + this.getName() +
                 "}";
     }
 }

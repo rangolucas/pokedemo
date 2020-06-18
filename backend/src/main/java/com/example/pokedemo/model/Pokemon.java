@@ -13,7 +13,6 @@ import java.util.Objects;
 public class Pokemon extends NamedApiResource {
 
     private long id;
-    private String name;
     private int height;
     private int weight;
     private Sprites sprites;
@@ -39,14 +38,6 @@ public class Pokemon extends NamedApiResource {
     @Override
     public void accept(ApiResourceVisitor visitor) {
         visitor.visit(this);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getWeight() {
@@ -154,7 +145,7 @@ public class Pokemon extends NamedApiResource {
     @Override
     public String toString() {
         return "Pokemon{" +
-                "name='" + name + '\'' +
+                "name='" + this.getName() + '\'' +
                 '}';
     }
 

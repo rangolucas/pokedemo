@@ -12,7 +12,6 @@ import java.util.List;
 public class PokemonSpecies extends NamedApiResource {
 
     private int id;
-    private String name;
     @JsonProperty("evolves_from_species")
     @Nullable
     private PokemonSpecies evolvesFromSpecies;
@@ -42,16 +41,6 @@ public class PokemonSpecies extends NamedApiResource {
         this.id = id;
     }
 
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Nullable
     public PokemonSpecies getEvolvesFromSpecies() {
         return evolvesFromSpecies;
@@ -67,5 +56,12 @@ public class PokemonSpecies extends NamedApiResource {
 
     public void setEvolutionChain(EvolutionChain evolutionChain) {
         this.evolutionChain = evolutionChain;
+    }
+
+    @Override
+    public String toString() {
+        return "PokemonSpecies{" +
+                "name=" + this.getName() +
+                "}";
     }
 }
