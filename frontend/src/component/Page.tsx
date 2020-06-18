@@ -3,7 +3,7 @@ import {PokemonList} from "./PokemonList";
 import "../style/Page.css";
 import {Pokemon} from "../model/Pokemon";
 import Modal from "react-bootstrap/Modal";
-import {LoadingScreen} from "./LoadingScreen";
+import {AltScreen} from "./AltScreen";
 import {config} from "../config/config"
 import {InfoBox} from "./InfoBox";
 import ReactPaginate from "react-paginate";
@@ -17,6 +17,7 @@ export function Page() {
     const [selectedPokemon, setSelectedPokemon] = React.useState<Pokemon | null>(null);
     const [pageNumber, setPageNumber] = React.useState<number>(0);
     const [loading, setLoading] = React.useState<boolean>(true);
+    const [error, setError] = React.useState<boolean>(false);
     const pages : IPage[] = useSelector((state : PagesState) => state.pages);
     const dispatch = useDispatch();
 
@@ -29,10 +30,16 @@ export function Page() {
         let cachedPage = pages.find(p => p.number === pageNumber);
         if(!cachedPage) {
             let url: string = config.apiUrl + config.pokemonPath + "?page=" + (pageNumber + 1);
-            fetch(url).then(response => response.json()).then(data => {
+            fetch(url).then(response => {
+                if(!response.ok) throw Error(response.statusText)
+                return response.json()
+            }).then(data => {
                 setPokemonList(data)
                 setLoading(false)
                 dispatch(addPage({ number: pageNumber, pokemon: data }));
+            }).catch(() => {
+                setError(true)
+                setLoading(false)
             });
         } else {
             setPokemonList(cachedPage.pokemon);
@@ -40,7 +47,7 @@ export function Page() {
         }
     }, [pageNumber])
 
-    return loading ? <LoadingScreen/> : (
+    return (loading || error) ? <AltScreen error={error}/> : (
         <>
             <ReactPaginate
                 breakClassName={'page-item'}
