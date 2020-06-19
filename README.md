@@ -1,6 +1,6 @@
 # Pokedemo
 
-Pokedemo es un wrapper de la API alojada en pokeapi.co con Spring Boot y React web.
+Pokedemo es un wrapper de la API alojada en [pokeapi.co](https://pokeapi.co/) con Spring Boot y React web.
 
 ## Deploy
 
@@ -19,5 +19,6 @@ Configurar IP donde se aloja el backend en el archivo ```src/frontend/config/con
 
 ```bash
 cd frontend \
+yarn install \
 yarn start
 ```
