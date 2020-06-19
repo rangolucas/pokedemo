@@ -19,8 +19,7 @@ Configurar IP y puerto (por defecto 8080) donde se aloja el backend en el archiv
 
 ```bash
 cd frontend \
-yarn install \
-yarn start
+yarn install && yarn start
 ```
 
 La aplicación estará corriendo en el puerto 3000.
