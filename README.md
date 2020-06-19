@@ -14,7 +14,7 @@ mvn clean install && java -jar target/pokedemo-0.0.1-SNAPSHOT.jar
 
 Frontend:
 
-Configurar IP donde se aloja el backend en el archivo ```frontend/src/config/config.js``` y luego:
+Configurar IP y puerto (por defecto 8080) donde se aloja el backend en el archivo ```frontend/src/config/config.js``` y luego:
 
 
 ```bash
@@ -22,3 +22,5 @@ cd frontend \
 yarn install \
 yarn start
 ```
+
+La aplicación estará corriendo en el puerto 3000.
