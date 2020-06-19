@@ -7,7 +7,7 @@ Pokedemo es un wrapper de la API alojada en pokeapi.co con Spring Boot y React w
 Backend:
 
 ```bash
-cd backend \
+cd backend
 mvn clean install && java -jar target/pokedemo-0.0.1-SNAPSHOT.jar
 ```
 
@@ -18,7 +18,7 @@ Configurar IP y puerto (por defecto 8080) donde se aloja el backend en el archiv
 
 
 ```bash
-cd frontend \
+cd frontend
 yarn install && yarn start
 ```
 
